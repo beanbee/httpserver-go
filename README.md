@@ -30,9 +30,9 @@ func main() {
 	    	}
 	}()
 
-	// you can stop server using Stop() method, which could await completion for all request
+	// you can stop server using Stop() method which could await completion for all requests
 	// finishing off some extra-works by a system signal is recommended
-        EndChannel := make(chan os.Signal)
+	EndChannel := make(chan os.Signal)
 	signal.Notify(EndChannel, syscall.SIGINT, syscall.SIGQUIT, syscall.SIGTERM)
 	select {
 	case output := <-EndChannel:
