@@ -7,11 +7,11 @@ import (
 )
 
 // net/http/tcpKeepAliveListener
-type keepAlivelListener struct {
+type keepAliveListener struct {
 	*net.TCPListener
 }
 
-func newKeepAliveListener(port int) (*keepAlivelListener, error) {
+func newKeepAliveListener(port int) (*keepAliveListener, error) {
 	l, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
 	if err != nil {
 		return nil, err
@@ -22,7 +22,7 @@ func newKeepAliveListener(port int) (*keepAlivelListener, error) {
 		return nil, fmt.Errorf("cannot convert to tcp listener")
 	}
 
-	kaLis := &keepAlivelListener{
+	kaLis := &keepAliveListener{
 		TCPListener: tcpL,
 	}
 
@@ -30,7 +30,7 @@ func newKeepAliveListener(port int) (*keepAlivelListener, error) {
 }
 
 //
-func (kl *keepAlivelListener) Accept() (c net.Conn, err error) {
+func (kl *keepAliveListener) Accept() (c net.Conn, err error) {
 	tc, err := kl.AcceptTCP()
 	if err != nil {
 		return
