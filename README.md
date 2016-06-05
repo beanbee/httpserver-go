@@ -25,8 +25,19 @@ func main() {
 		log.Printf("server failed: %v", err)
 	}
 
-	// await completion for all request
-	server.Stop()
+	// you can stop server using Stop() method, which could await completion for all request
+	// for example: finishing off some extra-works by a system signal is recommended
+	/* 
+        EndChannel := make(chan os.Signal)
+	signal.Notify(EndChannel, syscall.SIGINT, syscall.SIGQUIT, syscall.SIGTERM)
+	select {
+	case output := <-EndChannel:
+		log.Printf("end http server process by: %s", output)
+		server.Stop()
+		break
+	}
+	close(EndChannel)
+    */ 
 
 }
 
