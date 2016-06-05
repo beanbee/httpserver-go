@@ -3,12 +3,9 @@ restful http server with async-request handler &amp; stoppable listener (Golang)
 
 Usage:
 
-`
+```Go
 import (
 	"log"
-	"os"
-	"os/signal"
-	"syscall"
 	"time"
 
 	httpserver "github.com/beanbee/httpserver-go"
@@ -28,8 +25,8 @@ func main() {
 		log.Printf("server failed: %v", err)
 	}
 
-    // await completion for all request
-    server.Stop()
+	// await completion for all request
+	server.Stop()
 
 }
 
@@ -49,4 +46,4 @@ func asyncDemo(jsonIn []byte) (err error) {
 
 	return nil
 }
-`
+```
