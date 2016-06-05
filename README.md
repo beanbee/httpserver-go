@@ -7,6 +7,9 @@ Usage:
 import (
 	"log"
 	"time"
+	"os"
+	"os/signal"
+	"syscall"
 
 	httpserver "github.com/beanbee/httpserver-go"
 )
@@ -20,14 +23,15 @@ func main() {
 
 	// handler async http request
 	server.HandlerAsyncRequst("POST", "/async", asyncDemo)
-
-	if err := server.Start(); err != nil {
-		log.Printf("server failed: %v", err)
-	}
+	
+	go func(){
+		if err := server.Start(); err != nil {
+			log.Printf("server failed: %v", err)
+	    	}
+	}()
 
 	// you can stop server using Stop() method, which could await completion for all request
-	// for example: finishing off some extra-works by a system signal is recommended
-	/* 
+	// finishing off some extra-works by a system signal is recommended
         EndChannel := make(chan os.Signal)
 	signal.Notify(EndChannel, syscall.SIGINT, syscall.SIGQUIT, syscall.SIGTERM)
 	select {
@@ -37,8 +41,7 @@ func main() {
 		break
 	}
 	close(EndChannel)
-    */ 
-
+	
 }
 
 // simple handler for sync request
