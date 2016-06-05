@@ -20,7 +20,7 @@ type Server struct {
 	donePipe   chan interface{}   // wait all async tasks
 	endSignal  chan interface{}   // perform gracefully stop
 
-	listener    *keepAlivelListener
+	listener    *keepAliveListener
 	taskManager TaskManager
 }
 
