@@ -38,10 +38,8 @@ func main() {
 	case output := <-EndChannel:
 		log.Printf("end http server process by: %s", output)
 		server.Stop()
-		break
 	}
 	close(EndChannel)
-	
 }
 
 // simple handler for sync request
