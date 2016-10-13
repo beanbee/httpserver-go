@@ -8,7 +8,7 @@ import (
 
 const (
 	DEFAULT_ASYNC_NUM    = 4
-	DEFAULT_STOP_TIMEOUT = 30 * time.Second
+	DEFAULT_STOP_TIMEOUT = 1800 * time.Second
 )
 
 type Server struct {
